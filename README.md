@@ -21,7 +21,7 @@ Tests can be executed for this library by running `make integration` to run all 
 * port-integ
 * vxc-integ
 
-In order to run theses tests valid user Credentials will need to be provided as per the Credentials section below.
+In order to run these tests valid user Credentials will need to be provided as per the Credentials section below.
 
 ### Credentials
 For the purposes of testing Megaport Credentials can be passed to the integration tests by setting the following environment variables:
