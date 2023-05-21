@@ -115,21 +115,35 @@ func (v *VXC) DeleteVXC(id string, deleteNow bool) (bool, error) {
 
 // UpdateVXC updates a VXC
 func (v *VXC) UpdateVXC(id string, name string, rateLimit int, aEndVLAN int, bEndVLAN int) (bool, error) {
+	return v.UpdateVXCWithInnerVlan(id, name, rateLimit, aEndVLAN, bEndVLAN, nil)
+}
+
+func (v *VXC) UpdateVXCWithInnerVlan(
+	id string,
+	name string,
+	rateLimit int,
+	aEndVLAN int,
+	bEndVLAN int,
+	bEndInnerVLAN *int,
+) (bool, error) {
 	url := fmt.Sprintf("/v2/product/%s/%s", types.PRODUCT_VXC, id)
 	var update interface{}
 
 	if bEndVLAN == 0 {
 		update = types.PartnerVXCUpdate{
-			Name:      name,
-			RateLimit: rateLimit,
-			AEndVLAN:  aEndVLAN,
+			Name:          name,
+			RateLimit:     rateLimit,
+			AEndVLAN:      aEndVLAN,
+			BEndVLAN:      &bEndVLAN,
+			BEndInnerVLAN: bEndInnerVLAN,
 		}
 	} else {
 		update = types.VXCUpdate{
-			Name:      name,
-			RateLimit: rateLimit,
-			AEndVLAN:  aEndVLAN,
-			BEndVLAN:  &bEndVLAN,
+			Name:          name,
+			RateLimit:     rateLimit,
+			AEndVLAN:      aEndVLAN,
+			BEndVLAN:      &bEndVLAN,
+			BEndInnerVLAN: bEndInnerVLAN,
 		}
 	}
 
