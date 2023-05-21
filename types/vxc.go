@@ -52,6 +52,7 @@ type VXCEndConfiguration struct {
 	Location      string `json:"location"`
 	VLAN          int    `json:"vlan"`
 	SecondaryName string `json:"secondaryName"`
+	InnerVLAN     int    `json:"innerVlan,omitempty"`
 }
 
 type VXCResources struct {
@@ -108,14 +109,17 @@ type PartnerLookupItem struct {
 }
 
 type VXCUpdate struct {
-	Name      string `json:"name"`
-	RateLimit int    `json:"rateLimit"`
-	AEndVLAN  int    `json:"aEndVlan"`
-	BEndVLAN  *int   `json:"bEndVlan,omitempty"`
+	Name          string `json:"name"`
+	RateLimit     int    `json:"rateLimit"`
+	AEndVLAN      int    `json:"aEndVlan"`
+	BEndVLAN      *int   `json:"bEndVlan,omitempty"`
+	BEndInnerVLAN *int   `json:"bEndInnerVlan,omitempty"`
 }
 
 type PartnerVXCUpdate struct {
-	Name      string `json:"name"`
-	RateLimit int    `json:"rateLimit"`
-	AEndVLAN  int    `json:"aEndVlan"`
+	Name          string `json:"name"`
+	RateLimit     int    `json:"rateLimit"`
+	AEndVLAN      int    `json:"aEndVlan"`
+	BEndVLAN      *int   `json:"bEndVlan,omitempty"`
+	BEndInnerVLAN *int   `json:"bEndInnerVlan,omitempty"`
 }
